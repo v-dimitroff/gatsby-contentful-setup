@@ -19,7 +19,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     }
   `);
 
-  result.data.allContentfulStore.edges.forEach((edge) => {
+  result.data.allContentfulSeoAndHero.edges.forEach((edge) => {
     createPage({
       path: edge.node.slug,
       component: pageTemplate,

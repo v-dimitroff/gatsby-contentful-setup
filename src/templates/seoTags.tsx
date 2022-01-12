@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const seoTags = props => {
+    console.log(props)
+
     return (
         <div>
 
