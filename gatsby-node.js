@@ -13,7 +13,6 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
           luxLabel
           heroTitle
           heroSubtitle
-          contentful_id
           slug
         }
       }
