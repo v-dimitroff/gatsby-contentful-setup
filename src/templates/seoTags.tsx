@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const seoTags = props => {
-    console.log(props)
-
+const seoTags = ({ pageContext: { data } }) => {
     return (
         <div>
-
+            <h1>{data.heroTitle}</h1>
+            <h3>{data.heroSubtitle}</h3>
+            <p>{data.seoDescription}</p>
         </div>
     )
 }

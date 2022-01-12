@@ -19,12 +19,15 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     }
   `);
 
-  result.data.allContentfulSeoAndHero.edges.forEach((edge) => {
+  console.log(result.data.allContentfulSeoAndHero.nodes);
+
+  result.data.allContentfulSeoAndHero.nodes.forEach((node) => {
     createPage({
-      path: edge.node.slug,
+      path: node.slug,
       component: pageTemplate,
       context: {
-        slug: edge.node.slug,
+        slug: node.slug,
+        data: node,
       },
     });
   });
