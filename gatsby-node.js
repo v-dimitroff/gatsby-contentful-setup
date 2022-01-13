@@ -37,8 +37,11 @@ const createPageSections = async ({ graphql, actions: { createPage } }) => {
     {
       allContentfulPageSection {
         nodes {
-          paragraphs
           slug
+          paragraphs {
+            paragraphs
+          }
+          node_locale
         }
       }
     }
