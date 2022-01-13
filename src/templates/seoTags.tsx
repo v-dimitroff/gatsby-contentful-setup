@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const seoTags = ({ pageContext: { data } }) => {
+const SeoTags = ({ pageContext: { data } }) => {
     return (
         <div>
             <h1>{data.heroTitle}</h1>
@@ -11,8 +11,4 @@ const seoTags = ({ pageContext: { data } }) => {
     )
 }
 
-seoTags.propTypes = {
-
-}
-
-export default seoTags
+export default SeoTags

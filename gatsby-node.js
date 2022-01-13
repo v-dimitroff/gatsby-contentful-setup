@@ -1,6 +1,6 @@
 const path = require("path");
 
-exports.createPages = async ({ graphql, actions: { createPage } }) => {
+const createSeoTags = async ({ graphql, actions: { createPage } }) => {
   const pageTemplate = path.resolve("src/templates/seoTags.tsx");
   const result = await graphql(`
     {
@@ -19,8 +19,6 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     }
   `);
 
-  console.log(result.data.allContentfulSeoAndHero.nodes);
-
   result.data.allContentfulSeoAndHero.nodes.forEach((node) => {
     createPage({
       path: node.slug,
@@ -31,6 +29,39 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       },
     });
   });
+};
+
+const createPageSections = async ({ graphql, actions: { createPage } }) => {
+  const pageTemplate = path.resolve("src/templates/pageSection.tsx");
+  const result = await graphql(`
+    {
+      allContentfulPageSection {
+        nodes {
+          slug
+          paragraphs {
+            paragraphs
+          }
+          node_locale
+        }
+      }
+    }
+  `);
+
+  result.data.allContentfulPageSection.nodes.forEach((node) => {
+    createPage({
+      path: node.slug,
+      component: pageTemplate,
+      context: {
+        slug: node.slug,
+        data: node,
+      },
+    });
+  });
+};
+
+exports.createPages = async (gatsby) => {
+  await createSeoTags(gatsby);
+  await createPageSections(gatsby);
 
   return;
 };
