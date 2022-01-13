@@ -35,7 +35,7 @@ const createPageSections = async ({ graphql, actions: { createPage } }) => {
   const pageTemplate = path.resolve("src/templates/pageSection.tsx");
   const result = await graphql(`
     {
-      allContentfulPageSectionParagraphsTextNode {
+      allContentfulPageSection {
         nodes {
           paragraphs
           slug
@@ -44,18 +44,16 @@ const createPageSections = async ({ graphql, actions: { createPage } }) => {
     }
   `);
 
-  result.data.allContentfulPageSectionParagraphsTextNode.nodes.forEach(
-    (node) => {
-      createPage({
-        path: node.slug,
-        component: pageTemplate,
-        context: {
-          slug: node.slug,
-          data: node,
-        },
-      });
-    }
-  );
+  result.data.allContentfulPageSection.nodes.forEach((node) => {
+    createPage({
+      path: node.slug,
+      component: pageTemplate,
+      context: {
+        slug: node.slug,
+        data: node,
+      },
+    });
+  });
 };
 
 exports.createPages = async (gatsby) => {
