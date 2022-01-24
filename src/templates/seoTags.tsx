@@ -7,7 +7,7 @@ const SeoTags = ({ pageContext: { data } }) => {
             <h1>{data.heroTitle}</h1>
             <h3>{data.heroSubtitle}</h3>
             <p>{data.seoDescription}</p>
-        </div>
+        </div
     )
 }
 
